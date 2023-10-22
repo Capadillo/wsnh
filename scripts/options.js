@@ -6,7 +6,7 @@ export const data = {
     // -------------------------------------------------------
 
     // Dollar
-    labour: 175.00,                                           // Based on daily intake of $1400 over 8 hours. NOTE: GST is added later.
+    labour: 175,                                           // Based on daily intake of $1400 over 8 hours. NOTE: GST is added later.
 
     // -------------------------------------------------------
     // Exterra
@@ -24,7 +24,19 @@ export const data = {
     spacing:   2.75,                                          // allow 2.75 meters distance per station
 
     // Minute
-    minutes:  { soft: 12, hard: 18 },                         // 10 minutes per in ground station, 18 minutes per concrete station
+    minutes:  { 
+        exterra: {
+            soft: 18 / 60,
+            hard: 30 / 60
+        }
+    },
+
+    // Calculate Generic Costs
+    get soft_station() { return this.station + this.focus; },
+    get soft_renewal() { return ((data.timber * 6) + data.focus); },
+    get hard_station() { return this.core_cap + (this.timber * 4) + this.focus; },
+    get hard_renewal() { return ((data.timber * 4) + data.focus); },
+    get site_fee()     { return this.requiem + this.labour; },
 
     // -------------------------------------------------------
     // Treated Zone
@@ -50,31 +62,25 @@ export const options = {
         update: function(ui) {
             let num_soft = Math.ceil(ui.meters.soft / data.spacing);
             let num_hard = Math.floor(ui.meters.hard / data.spacing);
-            let duration = Math.ceil(( num_soft * data.minutes.soft + num_hard * data.minutes.hard ) / 60);
+            let duration = Math.ceil(num_soft * data.minutes.exterra.soft + num_hard * data.minutes.exterra.hard);
+            let renewal  = "$0.00";
+            let total    = "$0.00";
 
-            let total_price  = (data.labour * duration) + (data.labour * 5) + ((data.requiem + data.labour) * 2);
-                total_price += (num_soft * ((data.timber * 6) + data.focus)) + (num_hard * ((data.timber * 4) + data.focus));
-                total_price *= ui.multiplier;
-                total_price *= 1.10;
+            if (num_soft + num_hard > 0) {
+                // renewal cost
+                let lc1 = (data.labour * 7.5) + data.site_fee; // 5 monitor visits, 1 renewal, 1.5 tpi
+                let mc1 = (num_soft * data.soft_renewal) + (num_hard * data.hard_renewal);
+                renewal = "$" + ((lc1 + mc1) * 1.10).toFixed(2);
 
-            let renew_price  = (data.labour * 7.5) + (data.requiem + data.labour);
-                renew_price += (num_soft * ((data.timber * 6) + data.focus)) + (num_hard * ((data.timber * 4) + data.focus));
-                renew_price *= 1.10;
-
-            let renewal = "$" + renew_price.toFixed(2);
-
-            return {
-                details: replace(this.details, { num_soft, num_hard, duration, renewal }),
-                total: "$" + total_price.toFixed(2)
+                // install cost
+                let lc2 = (data.labour * (duration + 5)) + (data.site_fee * 3);
+                let mc2 = (num_soft * data.soft_station) + (num_hard * data.hard_station);
+                total   = "$" + ((lc2 + mc2) * ui.multiplier * 1.10).toFixed(2);
             }
+
+            let details = replace(this.details, { num_soft, num_hard, duration, renewal });
+
+            return { details, total }
         }
-    },
-    /*
-    "treated_zone": {
-        title: "Treated Zone",
-        overview: "This process involves excavating a trench around the perimeter of the structure and / or piers to a minimum depth of 50mm below the top edge of the footing. Where trenching is not possible because of an addition, such as concrete pathing, drill holes will be made along the surface edge closest to the footing.<br>\n<br>\nThe client must remove any pavers around the perimeter of the structure to allow for access to the soil underneath. It is not included as a part of this proposal to replace the pavers.<br>\n<br>\nOnce the area has been prepared, liquid termiticide will be applied to the prepared areas. Where drill holes have been made, an injection rod will be used to inject liquid termiticide into the soil below the hard surface and the hole patched using either plastic plugs or concrete.<br>\n<br>\nTreated zones that have been disturbed by construction, excavation or other soil disturbing activities will need reapplication to restore site to original condition. Failure to do so will void any applicable warranty or free service agreements.",
-        details: "Please refer to the attached product label for specific details on installation.",
-        total: "",
-    },
-    */
+    }
 };
