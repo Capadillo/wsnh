@@ -4,7 +4,7 @@
 // Import Components
 // --------------------------------------------------
 
-import "./components/spinner/_spinner.js";
+import "./components/spinner.js";
 
 import { clipboard } from "./utils/clipboard.js";
 
