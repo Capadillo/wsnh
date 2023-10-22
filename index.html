@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+        <title>Work Smarter Not Harder</title>
+        <link rel="stylesheet" href="./styles/vendor/remedy.css">
+        <link rel="stylesheet" href="./styles/app.css">
+    </head>
+    <body>
+        <header>
+            <img src="./images/icon-512.png" alt="Capes">
+            <h1>Proposal<br>Generator</h1>
+        </header>
+
+        <main>
+            <div data-custom-input="spinner">
+                <label>Soft / Dirt</label>
+                <input type="number" inputmode="numeric" min="0" value="0" id="meters_soft">
+            </div>
+    
+            <div data-custom-input="spinner">
+                <label>Hard / Concrete</label>
+                <input type="number" inputmode="numeric" min="0" value="0" id="meters_hard">
+            </div>
+
+            <div class="input slider">
+                <input type="range" min="100" max="200" value="100" id="multiplier">
+            </div>
+
+            <script type="text/template" id="template_option">
+                <article>
+                    <header>
+                        <button data-key="title"></button>
+                        <button>O</button>
+                        <button>D</button>
+                    </header>
+        
+                    <div>
+                        <section>
+                            <h3>Overview</h3>
+                            <p data-key="overview"></p>
+                        </section>
+
+                        <section>
+                            <h3>Details</h3>
+                            <p data-key="details"></p>
+                        </section>
+                    </div>
+            
+                    <footer>
+                        <h3>Total</h3>
+                        <p data-key="total"></p>
+                    </footer>
+                </article>
+            </script>
+        </main>
+
+        <script src="./scripts/vendor/jquery-3.7.1.min.js"></script>
+        <script src="./scripts/app.js" type="module"></script>
+    </body>
+</html>
