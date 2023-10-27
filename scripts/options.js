@@ -44,9 +44,9 @@ const exterra = {
 export const options = {
     "exterra": {
         title: "Exterra",
-        overview: "An Exterra Termite Baiting System will be installed around the perimeter of the structure. Each bait station will be placed no more than 3 meters apart, and will be monitored every 8 to 12 weeks over a 12 month cover period.<br>\n<br>\nIf any stations become active during the cover period: Requiem termite bait will be applied to the station and service visits will increase in frequency to 2 to 4 weeks until termite activity has ceased.<br>\n<br>\nIf termites enter the structure during the cover period: An above ground bait box will be placed at the point of activity and checked every 2 to 4 weeks until termite activity has ceased.<br>\n<br>\nAt the end of the cover period: a timber pest inspection and renewal of the system is required at an additional cost. A system renewal includes cleaning and replacing additives in all stations as well as replacing any damaged stations. NOTE: Excess damage to the stations may incur additional costs.",
-        details: "The mimimum number of stations to be installed to the perimeter of the structure is {[num_soft]} in ground stations and {[num_hard]} in concrete stations over a {[duration]} hour period.<br>\n<br>\nWhere in ground stations are installed; a hole will be dug out using a hand auger, drill-based auger, or post digger and a bait station will be installed into the hole, flush with the soil around the station. The bait station includes a child-safe twist top lid.<br>\n<br>\nIf core cuts are required; an electric core drill will be used to drill a hole through the concrete / tiles / pavers to the dirt below and a slip-resistant cap will be inserted to cover the hole. Access to water and electricity is required. If an above ground station is installed: a bait box will be placed at the point of activity and using No More Gaps, Black Tape, and / or Screws to adhere the station to the area of activity.<br>\n<br>\nThe estimated cost of renewal, including a timber pest inspection, is {[renewal]}.",
-        total: "",
+        overview: "EXTERRA In-ground Stations are placed in the ground around the exterior of the structure at intervals not exceeding 3 meters. It may be necessary to form holes in slabs, pavers or asphalt to place In-concrete Stations. In addition, Above-ground Stations are placed directly on areas where live termites are located and considered to be feeding.<br>\n<br>\nEXTERRA Stations are inspected no more than 12 weeks apart. During inspections of unbaited stations, the timber Interceptors are visually inspected. When termite activity is discovered in a Station, REQUIEM Termite Bait is added. REQUIEM is placed in the vacant cavity at the center of the Station in contact with the Interceptors<br>\n<br>\nREQUIEM Baited Stations are re-inspected every 2-6 weeks. Stations are continually replenished in order to make sure that REQUIEM bait is always present in the Station.<br>\n<br>\nWhen termite feeding in an In-ground Station has been absent for a period of time, the Station (and any remaining bait) is removed. The Station is cleaned out and fresh Interceptors and Focus Termite Attractant is added.<br>\n<br>\nThis proposal is for a 12-month cover period only. The estimated cost for renewal, including a Timber Pest Inspection, is approximately ${[renewal]}.<br>\n<br>\n* Actual price may vary.",
+        details: "Minimum EXTERRA Stations to be installed are:<br>\n<br>\n• {[num_soft]} In-ground Stations<br>\n• {[num_hard]} In-concrete Stations<br>\n<br>\nAbove-ground Stations are installed as required and is included in the above costs.<br>\n<br>\nThe total installation time is expected to be {[duration]} hours. Actual time may vary depending on the conditions at time of installation.<br>\n<br>\n* Access to eletricity and water may be required.",
+        total: "${[total]}",
 
         update: function(ui) {
             const stations  = exterra.calculate_stations(ui.meters);
@@ -58,14 +58,19 @@ export const options = {
             const total = ((labour + materials + site_fee) * ui.multiplier) * 1.10;
 
             return {
+                overview: replace(this.overview, {
+                    renewal: Math.max(total / 2, 1650).toFixed(2)
+                }),
+
                 details: replace(this.details, {
                     num_soft: stations.soft,
                     num_hard: stations.hard,
-                    duration: duration,
-                    renewal: "$" + Math.max(total / 2, 1650).toFixed(2)
+                    duration: duration 
                 }),
 
-                total: "$" + total.toFixed(2)
+                total: replace(this.total, {
+                    total: total.toFixed(2)
+                })
             };
         }
     }

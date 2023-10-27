@@ -20,7 +20,7 @@ function get_user_input() {
             soft: new Number($('#meters_soft').val()),
             hard: new Number($('#meters_hard').val())
         },
-        multiplier: new Number($('#multiplier').val()) / 100
+        multiplier: new Number($('#multiplier').val())
     };
 }
 
@@ -60,6 +60,16 @@ function load() {
         const section = article.find("[data-key=details]");
         clipboard(section.text());
     });
+
+    $('input[type="range"]').on('change', (e) => {
+        let newVal = e.target.value;
+        let negNewVal = -1 * newVal;
+    
+        let rangeText = $('.range-text');
+        rangeText.css('left', (newVal + '%')); //Set range left position
+        rangeText.css('transform', 'translate(' + negNewVal + '%, 2px)'); //Set range translate to correct
+        rangeText.html(newVal); //Set range text equal to input position
+    })
 }
 
 function update() {
