@@ -57,7 +57,7 @@ function onUpdate(ui) {
             hard: ic_stations
         },
         duration,
-        renewal: Math.min((((labour + materials + cost.site_fee) * ui.multiplier) * 1.10) / 2, 1650).toFixed(2),
+        renewal: Math.max((((labour + materials + cost.site_fee) * ui.multiplier) * 1.10) / 2, 1650).toFixed(2),
         total:   (((labour + materials + cost.site_fee) * ui.multiplier) * 1.10).toFixed(2)
     };
 }
