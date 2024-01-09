@@ -30,24 +30,26 @@ function onUpdate(ui) {
     let soft_ground = 0;
     let hard_ground = 0;
 
-    if (ui.options.subfloor.piers && !ui.options.subfloor.external_wall) {
-        soft_ground = calcpiers(total_meters) * soft_cost;
-    }
+    if (total_meters > 0) {=
+        if (ui.options.subfloor.piers && !ui.options.subfloor.external_wall) {
+            soft_ground = calcpiers(total_meters) * soft_cost;
+        }
 
-    if (ui.options.subfloor.piers && ui.options.subfloor.external_wall) {
-        soft_ground = calcpiers(total_meters, true) * soft_cost;
-        soft_ground+= (total_meters + ui.meters.soft) * soft_cost;
-        hard_ground = ui.meters.hard * hard_cost;
-    }
+        if (ui.options.subfloor.piers && ui.options.subfloor.external_wall) {
+            soft_ground = calcpiers(total_meters, true) * soft_cost;
+            soft_ground+= (total_meters + ui.meters.soft) * soft_cost;
+            hard_ground = ui.meters.hard * hard_cost;
+        }
 
-    if (!ui.options.subfloor.piers && ui.options.subfloor.external_wall) {
-        soft_ground = (total_meters + ui.meters.soft) * soft_cost;
-        hard_ground = ui.meters.hard * hard_cost;
-    }
+        if (!ui.options.subfloor.piers && ui.options.subfloor.external_wall) {
+            soft_ground = (total_meters + ui.meters.soft) * soft_cost;
+            hard_ground = ui.meters.hard * hard_cost;
+        }
 
-    if (!ui.options.subfloor.piers && !ui.options.subfloor.external_wall) {
-        soft_ground = ui.meters.soft * soft_cost;
-        hard_ground = ui.meters.hard * hard_cost;
+        if (!ui.options.subfloor.piers && !ui.options.subfloor.external_wall) {
+            soft_ground = ui.meters.soft * soft_cost;
+            hard_ground = ui.meters.hard * hard_cost;
+        }
     }
 
     // return data
