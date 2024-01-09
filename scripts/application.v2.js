@@ -8,7 +8,13 @@ function get_input() {
             soft: new Number($('#meters_soft').val()),
             hard: new Number($('#meters_hard').val())
         },
-        multiplier: new Number($('#multiplier').val())
+        multiplier: new Number($('#multiplier').val()),
+        options: {
+            subfloor: {
+                piers: $('#subfloor_piers').is(':checked'),
+                external_wall: $('#subfloor_external_wall').is(':checked')
+            }
+        }
     };
 }
 
@@ -32,9 +38,10 @@ import { clipboard } from "./utils/clipboard.js";
 
 // Import the options from the options folder.
 import exterra from "./options/exterra.js";
+import treated_zone from "./options/treated-zone.js";
 
 // Add the options to the options array.
-const options = [ exterra ];
+const options = [ exterra, treated_zone ];
 
 // --------------------------------------------------
 // Load
@@ -66,8 +73,9 @@ function load() {
 
 }
 
-function update() {
+function update(e) {
     const user_input = get_input();
+    //console.log('triggered!', e);
 
     for (let option of options) {
         // Get the updated values from the option.
