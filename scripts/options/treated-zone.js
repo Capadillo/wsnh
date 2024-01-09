@@ -30,7 +30,7 @@ function onUpdate(ui) {
     let soft_ground = 0;
     let hard_ground = 0;
 
-    if (total_meters > 0) {=
+    if (total_meters > 0) {
         if (ui.options.subfloor.piers && !ui.options.subfloor.external_wall) {
             soft_ground = calcpiers(total_meters) * soft_cost;
         }
