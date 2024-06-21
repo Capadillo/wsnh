@@ -7,7 +7,7 @@ $('.spinner button').on('click', function(e) {
         $(this).siblings('input')[0].stepDown();
     }
 
-    navigator.vibrate(500);
+    navigator.vibrate(100);
 
     $(this).siblings('input').trigger('input');
 });
