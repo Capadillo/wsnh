@@ -6,9 +6,12 @@
         <title>Work Smarter Not Harder</title>
         <link rel="stylesheet" href="./css/vendor/remedy.css">
         <link rel="stylesheet" href="./css/master.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     </head>
     <body>
-        <header>
+        <div class="flash">Default Message</div>
+
+        <header class="page-header">
             <img src="../images/icon-512.png" alt="Capes">
             <h1>Proposal Generator</h1>
         </header>
@@ -17,44 +20,66 @@
             <section class="input-group">
                 <div class="spinner" id="soil">
                     <button>&plus;</button>
-                    <input type="number" id="soil-input" min="0" value="0" tabindex="1">
-                    <label for="soil-input">Soil (Steps)</label>
+                    <input type="number" id="soil-input" tabindex="1" min="0" placeholder="0">
+                    <label for="soil-input">Soil (Meters)</label>
                     <button>&minus;</button>
                 </div>
                 
                 <div class="spinner" id="concrete">
                     <button>&plus;</button>
-                    <input type="number" id="concrete-input" min="0" value="0" tabindex="2">
-                    <label for="concrete-input">Concrete (Steps)</label>
+                    <input type="number" id="concrete-input" tabindex="1" min="0" placeholder="0">
+                    <label for="concrete-input">Concrete (Meters)</label>
                     <button>&minus;</button>
                 </div>
 
                 <div class="slider">
-                    <input type="range" min="1" max="2" value="0" step="0.05" id="multiplier" tabindex="3">
+                    <input type="range" id="multiplier" tabindex="3" min="1" max="2" value="0" step="0.05">
                     <output for="multiplier" onforminput="value = multiplier.valueAsNumber;">0</output>
                 </div>
             </section>
 
-            <article>
-                <h2>General Information</h2>
-                <p>EXTERRA In-Ground Stations are placed in the ground around the exterior of the structure at intervals not exceeding 3 meters. It may be necessary to form holes in slabs, pavers or asphalt to place In-Concrete Stations. In addition, Above-Ground Stations are placed directly on areas where live termites are located and considered to be feeding.</p>
-                <p>EXTERRA Stations are inspected no more than 12 weeks apart. During inspections of unbaited stations, the timber Interceptors are visually inspected. When termite activity is discovered in a Station, REQUIEM Termite Bait is added. REQUIEM is placed in the vacant cavity at the center of the Station in contact with the Interceptors</p>
-                <p>REQUIEM Baited Stations are re-inspected every 2-6 weeks. Stations are continually replenished in order to make sure that REQUIEM bait is always present in the Station.</p>
-                <p>When termite feeding in an In-ground Station has been absent for a period of time, the Station (and any remaining bait) is removed. The Station is cleaned out and fresh Interceptors and Focus Termite Attractant is added.</p>
-                <p>This proposal is for a 12-month cover period. The EXTERRA system will require renewal after the initial 12-month cover period. The renewal cost also includes a Timber Pest Inspection with report.</p>
-                <p><strong>Installation:</strong> <ins id="install">$0.00</ins></p>
-                <p><strong>Renewal:</strong> <ins id="renewal">$0.00</ins></p>
-                <h2>Install Details</h2>
-                <p>The total number of stations to be installed are:</p>
-                <ul>
-                    <li><ins id="soil">0</ins> In-Ground Stations</li>
-                    <li><ins id="concrete">0</ins> In-Concrete Stations</li>
-                    <li>Above-Ground Stations are installed as required.</li>
-                </ul>
-                <p>The expected installation time for one technician is <ins id="duration">0</ins> hours.</p>
-                <p>* Access to electricity and water is REQUIRED for the installation of In-Concrete Stations.</p>
-                <p>* Pipe locator services may be required if there is concern of pipes being in the install area. This is at an additional cost of approximately $440.</p>
-            </article>
+            <div id="exterra">
+                <h2>
+                    <span>Exterra System</span>
+                    <span id="install_overview">$0.00</span>
+                </h2>
+
+                <section>
+                    <h3 class="collapsible">
+                        <span>TMS Info</span>
+                        <button class="material-symbols-outlined" data-button="copy">file_copy</button>
+                        <button class="material-symbols-outlined" data-button="toggle">menu</button>
+                    </h3>
+
+                    <article class="collapsed">
+                        <p>EXTERRA In-Ground Stations are placed in the ground around the exterior of the structure at intervals not exceeding 3 meters. It may be necessary to form holes in slabs, pavers or asphalt to place In-Concrete Stations. In addition, Above-Ground Stations are placed directly on areas where live termites are located and considered to be feeding.</p>
+                        <p>EXTERRA Stations are inspected no more than 12 weeks apart. During inspections of unbaited stations, the timber Interceptors are visually inspected. When termite activity is discovered in a Station, REQUIEM Termite Bait is added. REQUIEM is placed in the vacant cavity at the center of the Station in contact with the Interceptors</p>
+                        <p>REQUIEM Baited Stations are re-inspected every 2-6 weeks. Stations are continually replenished in order to make sure that REQUIEM bait is always present in the Station.</p>
+                        <p>When termite feeding in an In-ground Station has been absent for a period of time, the Station (and any remaining bait) is removed. The Station is cleaned out and fresh Interceptors and Focus Termite Attractant is added.</p>
+                        <p>This proposal is for a 12-month cover period. The EXTERRA system will require renewal after the initial 12-month cover period. The renewal cost also includes a Timber Pest Inspection with report.</p>
+                        <p><strong>Installation:</strong> <ins id="install">$0.00</ins></p>
+                        <p><strong>Renewal:</strong> <ins id="renewal">$0.00</ins></p>
+                    </article>
+
+                    <h3 class="collapsible">
+                        <span>Install Info</span>
+                        <button class="material-symbols-outlined" data-button="copy">file_copy</button>
+                        <button class="material-symbols-outlined" data-button="toggle">menu</button>
+                    </h3>
+
+                    <article class="collapsed">
+                        <p>The total number of stations to be installed are:</p>
+                        <p>
+                            &bullet; <ins id="stations-soil">0</ins> In-Ground Stations<br>
+                            &bullet; <ins id="stations-concrete">0</ins> In-Concrete Stations<br>
+                            &bullet; Above-Ground Stations are installed as required.
+                        </p>
+                        <p>The expected installation time for one technician is <ins id="duration">0</ins> hours.</p>
+                        <p>* Access to electricity and water is REQUIRED for the installation of In-Concrete Stations.</p>
+                        <p>* Pipe locator services may be required if there is concern of pipes being in the install area. This is at an additional cost of approximately $440.</p>
+                    </article>
+                </section>
+            </div>
         </main>
 
         <script src="./js/vendor/jquery.js"></script>

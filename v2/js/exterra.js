@@ -50,6 +50,10 @@ function onUpdate(stations = {}, multiplier = 1) {
     // Return Everything
     // --------------------------------------------------
 
+    if (stations.soil + stations.concrete == 0) {
+        return { install: 0, renewal: 0, duration: { install: 0 } };
+    }
+
     return {
         install: (materials_y1 + labour_y1 + monitor) * multiplier,
         renewal: (materials_y2 + labour_y2 + monitor) * multiplier,
@@ -67,9 +71,10 @@ export function update() {
     const multiplier = $('#multiplier').val();
     const { install, renewal, duration } = onUpdate({ soil, concrete }, multiplier);
 
-    $('ins#install').text(`$${install.toFixed(2)}`);
-    $('ins#renewal').text(`$${renewal.toFixed(2)}`);
-    $('ins#soil').text(`${soil}`);
-    $('ins#concrete').text(`${concrete}`);
-    $('ins#duration').text(`${duration.install}`);
+    $('#install_overview').text(`$${install.toFixed(2)}`);
+    $('#install').text(`$${install.toFixed(2)}`);
+    $('#renewal').text(`$${renewal.toFixed(2)}`);
+    $('#stations-soil').text(`${soil}`);
+    $('#stations-concrete').text(`${concrete}`);
+    $('#duration').text(`${duration.install}`);
 }

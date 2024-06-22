@@ -1,0 +1,93 @@
+.slider {
+    $height: 48px;
+    $gutter: 4px;
+
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+
+    @mixin track {
+        background: rgb(50, 50, 50);
+        border-radius: 0.5rem;
+        height: $height;
+        -webkit-appearance: none;
+        padding: $gutter;
+    }
+
+    @mixin thumb {
+        aspect-ratio: 1;
+        border: none;
+        box-shadow: none;
+        height: $height - $gutter * 2;
+        border-radius: 0.25rem;
+        background: rgba(white, 0.5);
+        -webkit-appearance: none;
+        margin: 0 0 0 0;
+        outline: none;
+    }
+
+    input[type=range] {
+        background-color: transparent;
+        width: 200px;
+        -ms-appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+        display: block;
+        margin: 0;
+        width: 100%;
+
+        &::-webkit-slider-runnable-track {
+            @include track;
+        }
+
+        &::-ms-track {
+            @include track;
+        }
+
+        &::-moz-range-track {
+            @include track;
+        }
+
+        &::-webkit-slider-thumb {
+            @include thumb;
+        }
+
+        &::-ms-thumb {
+            @include thumb;
+        }
+
+        &::-moz-range-thumb {
+            @include thumb;
+        }
+    }
+
+    output {
+        color: white;
+        padding: 4px 12px;
+        left: 50%;
+        min-width: 60px;
+        text-align: center;
+        transform: translate(-50%, -130%);
+        top: 0;
+
+        position: absolute;
+        background: rgba(0,0,0,0.5);
+        border-radius: .4em;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0.25px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border: 0.625em solid transparent;
+            border-top-color: rgba(0,0,0,0.5);
+            border-bottom: 0;
+            margin-left: -0.625em;
+            margin-bottom: -0.625em;
+        }
+    }
+}
