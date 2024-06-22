@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+main {
+    margin-block: 0.5rem;
+    margin-inline: auto;
+    max-width: min(50rem, 100% - 1rem);
+}
+
+ins {
+    text-decoration: none;
+}
+
+.input-group {
+    display: grid;
+    grid-gap: 0.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    & > .slider:has(#multiplier) {
+        grid-column: 1 / -1;
+    }
+}
+
+.spinner {
+    border-radius: 0.25rem;
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    grid-template-areas: "p i m" "p l m";
+    overflow: hidden;
+
+    & > button {
+        aspect-ratio: 1;
+        background-color: rgba(50, 50, 50, 1);
+        border: 0;
+        color: rgba(100, 100, 100, 1);
+        cursor: pointer;
+        font: inherit;
+        font-size: 1.5rem;
+        transition: color ease-in-out 0.1s;
+        user-select: none;
+
+        &:hover, &:active {
+            color: white;
+        }
+        
+        &:first-of-type {
+            grid-area: p;
+        }
+
+        &:last-of-type {
+            grid-area: m;
+        }
+    }
+
+    & > input {
+        background-color: white;
+        border: 0;
+        border-top: 3px solid rgba(50, 50, 50, 1);
+        color: black;
+        font: inherit;
+        font-size: 1.75rem;
+        grid-area: i;
+        outline: none;
+        padding: 0.25rem;
+        padding-bottom: 0;
+        text-align: center;
+        width: 100%;
+
+        /* Chrome, Safari, Edge, Opera */
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        &[type=number] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+    }
+
+    & > label {
+        background-color: white;
+        border: 0;
+        border-bottom: 3px solid rgba(50, 50, 50, 1);
+        color: rgba(50, 50, 50, 0.5);
+        font: inherit;
+        font-size: 0.7rem;
+        font-weight: 600;
+        grid-area: l;
+        outline: none;
+        padding: 0.25rem;
+        padding-top: 0;
+        text-align: center;
+    }
+}
+
+.slider {
+    $height: 48px;
+    $gutter: 4px;
+
+    position: relative;
+
+    @mixin track {
+        background: hsl(0, 0%, 16%);
+        border-radius: 0.25rem;
+        height: $height;
+        -webkit-appearance: none;
+        padding: $gutter;
+    }
+
+    @mixin thumb {
+        aspect-ratio: 1;
+        border: none;
+        box-shadow: none;
+        height: $height - $gutter * 2;
+        border-radius: 0.125rem;
+        background: hsl(0, 0%, 40%);
+        -webkit-appearance: none;
+        margin: 0 0 0 0;
+        outline: none;
+    }
+
+    input[type=range] {
+        background-color: transparent;
+        width: 200px;
+        -ms-appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+        display: block;
+        margin: 0;
+        width: 100%;
+
+        &::-webkit-slider-runnable-track {
+            @include track;
+        }
+
+        &::-ms-track {
+            @include track;
+        }
+
+        &::-moz-range-track {
+            @include track;
+        }
+
+        &::-webkit-slider-thumb {
+            @include thumb;
+        }
+
+        &::-ms-thumb {
+            @include thumb;
+        }
+
+        &::-moz-range-thumb {
+            @include thumb;
+        }
+    }
+
+    output {
+        color: white;
+        padding: 4px 12px;
+        left: 50%;
+        min-width: 60px;
+        text-align: center;
+        transform: translate(-50%, -130%);
+        top: 0;
+
+        position: absolute;
+        background: rgba(0,0,0,0.5);
+        border-radius: .4em;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0.25px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border: 0.625em solid transparent;
+            border-top-color: rgba(0,0,0,0.5);
+            border-bottom: 0;
+            margin-left: -0.625em;
+            margin-bottom: -0.625em;
+        }
+    }
+}

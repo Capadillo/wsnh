@@ -1,45 +1,10 @@
-$('.spinner button').on('click', function(e) {
-    const type = $(this).text();
-    
-    if (type === '+') {
-        $(this).siblings('input')[0].stepUp();
-        navigator.vibrate(100);
-    } else {
-        $(this).siblings('input')[0].stepDown();
+import { round } from './utils/numbers.js';
 
-        if ($(this).siblings('input').val() === '0') {
-            navigator.vibrate([100, 0, 100]);
-        } else {
-            navigator.vibrate(100);
-        }
-    }
-
-    display();
-});
-
-$(() => {
-    display();
-})
-
-// --------------------------------------------------
-// Utility Functions
-// --------------------------------------------------
-
-function round2(number) {
-   return +(Math.round(number + "e+2") + "e-2");
-}
-
-function round(value, step) {
-    step || (step = 1.0);
-    var inv = 1.0 / step;
-    return Math.round(value * inv) / inv;
-}
-
-// --------------------------------------------------
+// ------------------------------------------------------------
 // User Input
-// --------------------------------------------------
+// ------------------------------------------------------------
 
-function onUpdate(stations = {}) {
+function onUpdate(stations = {}, multiplier = 1) {
     stations.soil || (stations.soil = 0);
     stations.concrete || (stations.concrete = 0);
 
@@ -86,21 +51,25 @@ function onUpdate(stations = {}) {
     // --------------------------------------------------
 
     return {
-        install: materials_y1 + labour_y1 + monitor,
-        renewal: materials_y2 + labour_y2 + monitor
+        install: (materials_y1 + labour_y1 + monitor) * multiplier,
+        renewal: (materials_y2 + labour_y2 + monitor) * multiplier,
+        duration
     };
 }
 
-// --------------------------------------------------
+// ------------------------------------------------------------
 // Print To Consolec
-// --------------------------------------------------
+// ------------------------------------------------------------
 
-function display() {
-    const { install, renewal } = onUpdate({
-        soil: Math.ceil($('#soil-input').val() / 2.75),
-        concrete: Math.ceil($('#concrete-input').val() / 2.75),
-    });
+export function update() {
+    const soil = Math.ceil($('#soil-input').val() / 2.75);
+    const concrete = Math.ceil($('#concrete-input').val() / 2.75);
+    const multiplier = $('#multiplier').val();
+    const { install, renewal, duration } = onUpdate({ soil, concrete }, multiplier);
 
     $('ins#install').text(`$${install.toFixed(2)}`);
     $('ins#renewal').text(`$${renewal.toFixed(2)}`);
+    $('ins#soil').text(`${soil}`);
+    $('ins#concrete').text(`${concrete}`);
+    $('ins#duration').text(`${duration.install}`);
 }
