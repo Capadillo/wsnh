@@ -19,6 +19,16 @@
                 font-style: normal;
             }
 
+            ins {
+                text-decoration: none;
+            }
+
+            .input-group {
+                display: grid;
+                grid-gap: 0.5rem;
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            }
+
             .spinner {
                 border-radius: 0.25rem;
                 display: grid;
@@ -34,7 +44,8 @@
                     cursor: pointer;
                     font: inherit;
                     font-size: 1.5rem;
-                    transition: color ease-in 0.25s;
+                    transition: color ease-in-out 0.1s;
+                    user-select: none;
 
                     &:hover, &:active {
                         color: white;
@@ -96,11 +107,28 @@
         </style>
     </head>
     <body>
-        <div class="spinner" id="soil">
-            <button>&plus;</button>
-            <input type="number" id="soil-input" min="0" value="0">
-            <label for="soil-input">Step</label>
-            <button>&minus;</button>
-        </div>
+        <section class="input-group">
+            <div class="spinner" id="soil">
+                <button>&plus;</button>
+                <input type="number" id="soil-input" min="0" value="0">
+                <label for="soil-input">Soil (Steps)</label>
+                <button>&minus;</button>
+            </div>
+            <div class="spinner" id="concrete">
+                <button>&plus;</button>
+                <input type="number" id="concrete-input" min="0" value="0">
+                <label for="concrete-input">Concrete (Steps)</label>
+                <button>&minus;</button>
+            </div>
+        </section>
+        <article>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et dignissimos fugiat qui pariatur amet enim inventore ut laborum, hic commodi nostrum possimus, facere harum. Nesciunt culpa eos recusandae rem atque.</p>
+            <p>
+                <strong>Year One:</strong> <ins id="install"></ins>
+            </p>
+            <p>
+                <strong>Year Two:</strong> <ins id="renewal"></ins>
+            </p>
+        </article>
     </body>
 </html>
