@@ -46,6 +46,7 @@ $('[type=range]').on('blur touchend', function () {
 
 $('[type=range]').on('input', function () {
     setBubble($(this)[0], $(this).siblings('output')[0]);
+    navigator.vibrate(100);
 });
 
 function setBubble(range, bubble) {

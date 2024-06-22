@@ -4,6 +4,28 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
+
+    header {
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin: 0.5rem 1rem;
+        max-width: min(800px, 100% - 1rem);
+        overflow: hidden;
+
+        img {
+            max-height: 100px;
+        }
+
+        h1 {  
+            font-family: inherit;
+            font-size: 2.75rem;
+            font-weight: 500;
+            margin: 0;
+            text-align: center;
+        }
+    }
 }
 
 main {
@@ -106,6 +128,7 @@ ins {
     $height: 48px;
     $gutter: 4px;
 
+    -webkit-tap-highlight-color: transparent;
     position: relative;
 
     @mixin track {
