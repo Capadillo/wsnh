@@ -13,11 +13,11 @@ $('.slider input[type=range]').each(function () {
     $(this).trigger('input');
 });
 
-$('.slider input[type=range]').on('mousedown touchstart', function () {
+$('.slider input[type=range]').on('mousedown touchstart mouseover', function () {
     $(this).siblings('output').fadeIn(100);
 });
 
-$('.slider input[type=range]').on('mouseup touchend', function () {
+$('.slider input[type=range]').on('mouseup touchend mouseout', function () {
     $(this).siblings('output').fadeOut();
 });
 

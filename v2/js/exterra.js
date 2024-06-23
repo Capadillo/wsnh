@@ -1,5 +1,9 @@
 import { round } from './utils/numbers.js';
 
+function r2(v, toNumber = true) {
+    return toNumber ? Number(v.toFixed(2)) : v.toFixed(2);
+}
+
 // ------------------------------------------------------------
 // User Input
 // ------------------------------------------------------------
@@ -9,16 +13,18 @@ function onUpdate(stations = {}, multiplier = 1) {
     stations.concrete || (stations.concrete = 0);
 
     let duration = {
-        install: round(stations.soil * (20 / 60) + stations.concrete * (30 / 60), 0.25),
-        renewal: 1 + round((stations.soil + stations.concrete) * (3.5 / 60)),
-        monitor: round((stations.soil + stations.concrete) * (2.5 / 60)),
+        install: r2((45 + ((stations.soil * 15.0) + (stations.concrete * 30.0))) / 60),
+        renewal: r2((60 + ((stations.soil *  2.0) + (stations.concrete *  2.0))) / 60),
+        monitor: r2((15 + ((stations.soil *  1.5) + (stations.concrete *  1.5))) / 60),
     };
 
     // --------------------------------------------------
     // Hard Values
     // --------------------------------------------------
 
-    const rate_per_hour = 220;
+    const rate_per_hour = 242.00;
+
+    const num_monitor_visits = 5;
 
     const cost = {
         install: {
@@ -44,7 +50,7 @@ function onUpdate(stations = {}, multiplier = 1) {
     let labour_y2 = rate_per_hour * duration.renewal;
 
     // Monitoring
-    let monitor = (rate_per_hour * duration.monitor) * 5;
+    let monitor = (rate_per_hour * duration.monitor) * num_monitor_visits;
 
     // --------------------------------------------------
     // Return Everything
@@ -52,6 +58,25 @@ function onUpdate(stations = {}, multiplier = 1) {
 
     if (stations.soil + stations.concrete == 0) {
         return { install: 0, renewal: 0, duration: { install: 0 } };
+    }
+
+    if (false) {
+        console.clear();
+        console.log('\t- Stations -');
+        console.log('In-Ground\t\t', stations.soil.toString().padStart(3, ' '));
+        console.log('In-Concrete\t\t', stations.concrete.toString().padStart(3, ' '));
+        console.log('');
+        console.log('\t\t\t- Install -');
+        console.log('Materials\t\t\t\t\t$', r2(materials_y1, false).padStart(7, ' '));
+        console.log('Labour\t\t', duration.install.toFixed(2).padStart(5, ' '), 'Hrs\t\t$', r2(labour_y1, false).padStart(7, ' '));
+        console.log('Monitor\t\t', (duration.monitor * num_monitor_visits).toFixed(2).padStart(5, ' '), 'Hrs\t\t$', r2(monitor, false).padStart(7, ' '));
+        console.log('TOTAL\t\t', (duration.install + (duration.monitor * num_monitor_visits)).toFixed(2).padStart(5, ' '),'Hrs\t\t$', r2(labour_y1 + materials_y1 + monitor, false).padStart(7, ' '));
+        console.log('');
+        console.log('\t\t\t- Renewal -');
+        console.log('Materials\t\t\t\t\t$', r2(materials_y2, false).padStart(7, ' '));
+        console.log('Labour\t\t', duration.renewal.toFixed(2).padStart(5, ' '), 'Hrs\t\t$', r2(labour_y2, false).padStart(7, ' '));
+        console.log('Monitor\t\t', (duration.monitor * num_monitor_visits).toFixed(2).padStart(5, ' '), 'Hrs\t\t$', r2(monitor, false).padStart(7, ' '));
+        console.log('TOTAL\t\t', (duration.renewal + (duration.monitor * num_monitor_visits)).toFixed(2).padStart(5, ' '),'Hrs\t\t$', r2(labour_y2 + materials_y2 + monitor, false).padStart(7, ' '));
     }
 
     return {
@@ -71,9 +96,9 @@ export function update() {
     const multiplier = $('#multiplier').val();
     const { install, renewal, duration } = onUpdate({ soil, concrete }, multiplier);
 
-    $('#install_overview').text(`$${install.toFixed(2)}`);
-    $('#install').text(`$${install.toFixed(2)}`);
-    $('#renewal').text(`$${renewal.toFixed(2)}`);
+    $('#install_overview').text(`$${install.toFixed(0)}`);
+    $('#install').text(`$${install.toFixed(0)}`);
+    $('#renewal').text(`$${renewal.toFixed(0)}`);
     $('#stations-soil').text(`${soil}`);
     $('#stations-concrete').text(`${concrete}`);
     $('#duration').text(`${duration.install}`);

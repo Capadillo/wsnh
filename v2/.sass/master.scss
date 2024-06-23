@@ -124,10 +124,6 @@ h1, h2, h3, h4, h5, h6, p {
     margin-block: 0.75em;
 }
 
-p {
-    text-align: justify;
-}
-
 ins {
     text-decoration: none;
 }
@@ -144,6 +140,49 @@ ins {
 
 article.collapsed {
     display: none;
+}
+
+.system-window {
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    overflow: hidden;
+
+    header {
+        align-items: stretch;
+        background-color: rgba(100, 100, 100, 1);
+        color: white;
+        display: grid;
+        grid-gap: 1px;
+        grid-template-columns: max-content auto repeat(3, max-content);
+        
+        & > span {
+            background-color: rgba(50, 50, 50, 1);
+            padding: 1rem;
+            
+            &.title {
+                display: flex;
+                font-family: 'Unica One', sans-serif;
+                font-size: 1.25rem;
+                
+                & :first-child {
+                    flex-grow: 1;
+                }
+            }
+
+            &[data-collapse], &[data-copy] {
+                cursor: pointer;
+                user-select: none;
+            }
+        }
+    }
+
+    article {
+        background-color: white;
+        padding: 1rem;
+
+        & :first-child { margin-block-start: unset; }
+        & :last-child { margin-block-end: unset; }
+    }
 }
 
 @import './widgets/slider';
