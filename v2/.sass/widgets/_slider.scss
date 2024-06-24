@@ -1,12 +1,12 @@
 .slider {
-    $height: 48px;
+    $height: 56px;
     $gutter: 4px;
 
     -webkit-tap-highlight-color: transparent;
     position: relative;
 
     @mixin track {
-        background: rgb(50, 50, 50);
+        background: $color-dark;
         border-radius: 0.5rem;
         height: $height;
         -webkit-appearance: none;
@@ -19,15 +19,19 @@
         box-shadow: none;
         height: $height - $gutter * 2;
         border-radius: 0.25rem;
-        background: rgba(white, 0.5);
+        background: lighten($color-dark, 15%);
         -webkit-appearance: none;
         margin: 0 0 0 0;
         outline: none;
+        transition: background ease-in-out 0.1s;
+
+        &:hover, &:active {
+            background: lighten($color-dark, 25%); 
+        }
     }
 
     input[type=range] {
         background-color: transparent;
-        width: 200px;
         -ms-appearance: none;
         -moz-appearance: none;
         -webkit-appearance: none;
@@ -38,29 +42,13 @@
         margin: 0;
         width: 100%;
 
-        &::-webkit-slider-runnable-track {
-            @include track;
-        }
+        &::-webkit-slider-runnable-track { @include track; }
+        &::-ms-track { @include track; }
+        &::-moz-range-track { @include track; }
 
-        &::-ms-track {
-            @include track;
-        }
-
-        &::-moz-range-track {
-            @include track;
-        }
-
-        &::-webkit-slider-thumb {
-            @include thumb;
-        }
-
-        &::-ms-thumb {
-            @include thumb;
-        }
-
-        &::-moz-range-thumb {
-            @include thumb;
-        }
+        &::-webkit-slider-thumb { @include thumb; }
+        &::-ms-thumb { @include thumb; }
+        &::-moz-range-thumb { @include thumb; }
     }
 
     output {
@@ -73,7 +61,7 @@
         top: 0;
 
         position: absolute;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0, 0, 0, 0.5);
         border-radius: .4em;
 
         &::after {
@@ -84,7 +72,7 @@
             width: 0;
             height: 0;
             border: 0.625em solid transparent;
-            border-top-color: rgba(0,0,0,0.5);
+            border-top-color: rgba(0, 0, 0, 0.5);
             border-bottom: 0;
             margin-left: -0.625em;
             margin-bottom: -0.625em;

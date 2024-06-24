@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
 
+$color-dark: rgba(50, 50, 50, 1);
+
 body {
     background-color: rgba(0, 0, 0, 0.3);
     font-family: "Poppins", sans-serif;
@@ -11,13 +13,26 @@ body {
 
 header {
     &.page-header {
-        align-items: center;
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        margin: 0.5rem auto;
-        max-width: min(800px, 100% - 1rem);
+        background-color: $color-dark;
+        color: white;
         overflow: hidden;
+        width: 100%;
+
+        section {
+            align-items: center;
+            display: grid;
+            grid-template-columns: auto max-content;
+            margin-inline: auto;
+            max-width: min(36rem, 100% - 1rem);
+
+            & > span {
+                background-color: transparent;
+                border: 0;
+                color: white;
+                cursor: pointer;
+                padding: 1rem 0.25rem;
+            }
+        }
 
         img {
             max-height: 100px;
@@ -25,16 +40,16 @@ header {
 
         h1 {  
             font-family: inherit;
-            font-size: 2.75rem;
+            font-size: 1.25rem;
             font-weight: 500;
             margin: 0;
-            text-align: center;
+            padding: 1rem 0.25rem;
         }
     }
 }
 
 .flash {
-    background-color: rgba(50, 50, 50, 1);
+    background-color: $color-dark;
     border-radius: 0.5rem;
     color: white;
     display: none;
@@ -48,11 +63,11 @@ header {
 main {
     margin-block: 0.5rem;
     margin-inline: auto;
-    max-width: min(50rem, 100% - 1rem);
+    max-width: min(36rem, 100% - 1rem);
 
     h2 {
         align-items: end;
-        color: rgba(50, 50, 50, 1);
+        color: $color-dark;
         display: grid;
         font-size: 1.75rem;
         font-weight: 700;
@@ -71,7 +86,7 @@ main {
         }
 
         &::after {
-            background-color: rgba(50, 50, 50, 1);
+            background-color: $color-dark;
             border-radius: 1rem;
             content: " ";
             display: block;
@@ -83,7 +98,7 @@ main {
     section {
         & > h3 {
             align-items: center;
-            background-color: rgba(50, 50, 50, 1);
+            background-color: $color-dark;
             border-radius: 0.25rem;
             color: white;
             display: grid;
@@ -131,7 +146,7 @@ ins {
 .input-group {
     display: grid;
     grid-gap: 0.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 
     & > .slider:has(#multiplier) {
         grid-column: 1 / -1;
@@ -149,17 +164,25 @@ article.collapsed {
 
     header {
         align-items: stretch;
-        background-color: rgba(100, 100, 100, 1);
-        color: white;
+        background-color: lighten($color-dark, 15%);
+        color: lighten($color-dark, 15%);
         display: grid;
         grid-gap: 1px;
         grid-template-columns: max-content auto repeat(3, max-content);
-        
+
         & > span {
-            background-color: rgba(50, 50, 50, 1);
+            background-color: $color-dark;
             padding: 1rem;
+            transition: color ease-in-out 0.1s;
+
+            &:not(.title) {
+                &:hover, &:active {
+                    color: lighten($color-dark, 25%);
+                }
+            }
             
             &.title {
+                color: white;
                 display: flex;
                 font-family: 'Unica One', sans-serif;
                 font-size: 1.25rem;

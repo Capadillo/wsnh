@@ -7,9 +7,9 @@
 
     & > button {
         aspect-ratio: 1;
-        background-color: rgba(50, 50, 50, 1);
+        background-color: $color-dark;
         border: 0;
-        color: rgba(100, 100, 100, 1);
+        color: lighten($color-dark, 15%);
         cursor: pointer;
         font: inherit;
         font-size: 1.5rem;
@@ -17,7 +17,7 @@
         user-select: none;
 
         &:hover, &:active {
-            color: white;
+            color: lighten($color-dark, 25%);
         }
         
         &:first-of-type {
@@ -32,10 +32,10 @@
     & > input {
         background-color: white;
         border: 0;
-        border-top: 3px solid rgba(50, 50, 50, 1);
+        border-top: 2px solid $color-dark;
         color: black;
         font: inherit;
-        font-size: 1.75rem;
+        font-size: 1.25rem;
         grid-area: i;
         outline: none;
         padding: 0.25rem;
@@ -61,10 +61,10 @@
     & > label {
         background-color: white;
         border: 0;
-        border-bottom: 3px solid rgba(50, 50, 50, 1);
-        color: rgba(50, 50, 50, 0.75);
+        border-bottom: 2px solid $color-dark;
+        color: $color-dark;
         font: inherit;
-        font-size: 0.7rem;
+        font-size: 0.6rem;
         font-weight: 600;
         grid-area: l;
         outline: none;
