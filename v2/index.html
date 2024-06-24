@@ -23,20 +23,21 @@
             <section class="input-group">
                 <div class="spinner" id="soil">
                     <button>&plus;</button>
-                    <input type="number" id="soil-input" tabindex="1" min="0" placeholder="0" value="58">
+                    <input type="number" id="soil-input" tabindex="1" min="0" placeholder="0">
                     <label for="soil-input">Soil (Meters)</label>
                     <button>&minus;</button>
                 </div>
                 
                 <div class="spinner" id="concrete">
                     <button>&plus;</button>
-                    <input type="number" id="concrete-input" tabindex="1" min="0" placeholder="0" value="8">
+                    <input type="number" id="concrete-input" tabindex="1" min="0" placeholder="0">
                     <label for="concrete-input">Concrete (Meters)</label>
                     <button>&minus;</button>
                 </div>
 
                 <div class="slider">
-                    <input type="range" id="multiplier" tabindex="3" min="1" max="2" value="1.2" step="0.05">
+                    <label for="multiplier">Price Multiplier %</label>
+                    <input type="range" id="multiplier" tabindex="3" min="1" value="1.1" max="2" step="0.05">
                     <output for="multiplier">0</output>
                 </div>
             </section>
