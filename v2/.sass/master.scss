@@ -21,9 +21,14 @@ header {
         section {
             align-items: center;
             display: grid;
-            grid-template-columns: auto max-content;
+            grid-template-columns: max-content auto max-content;
             margin-inline: auto;
             max-width: min(36rem, 100% - 1rem);
+
+            & > img {
+                aspect-ratio: 1;
+                height: 100%;
+            }
 
             & > span {
                 background-color: transparent;
@@ -43,7 +48,7 @@ header {
             font-size: 1.25rem;
             font-weight: 500;
             margin: 0;
-            padding: 1rem 0.25rem;
+            padding: 1rem;
         }
     }
 }
