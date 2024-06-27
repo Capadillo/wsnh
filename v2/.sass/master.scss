@@ -43,9 +43,8 @@ header {
             max-height: 100px;
         }
 
-        h1 {  
-            font-family: inherit;
-            font-size: 1.25rem;
+        h1 {
+            font-size: 1.5rem;
             font-weight: 500;
             margin: 0;
             padding: 1rem;
@@ -138,6 +137,23 @@ main {
     border-radius: 0.5rem;
     margin-top: 0.5rem;
     padding: 0.5rem;
+}
+
+h1, h2, h3 {
+    font-family: 'Unica One', sans-serif;
+}
+
+h3 {
+    font-size: 1.75rem;
+    text-align: center;
+
+    &::after {
+        background-color: black;
+        border-radius: 100%;
+        content: " ";
+        display: block;
+        height: 3px;
+    }
 }
 
 h1, h2, h3, h4, h5, h6, p {
