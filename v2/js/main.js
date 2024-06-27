@@ -3,13 +3,16 @@
 // --------------------------------------------------
 
 import { update as exterra_update } from './exterra.js';
+import { update as treated_zone_update } from './treated_zone.js';
 
 $('input').on('input change', () => {
     exterra_update();
+    treated_zone_update();
 });
 
 $(() => {
     exterra_update();
+    treated_zone_update();
 })
 
 // --------------------------------------------------

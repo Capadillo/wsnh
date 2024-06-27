@@ -1,5 +1,3 @@
-import { round } from './utils/numbers.js';
-
 function r2(v, toNumber = true) {
     return toNumber ? Number(v.toFixed(2)) : v.toFixed(2);
 }

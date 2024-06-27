@@ -37,7 +37,7 @@
 
                 <div class="slider">
                     <label for="multiplier">Price Multiplier %</label>
-                    <input type="range" id="multiplier" tabindex="3" min="1" value="1.1" max="2" step="0.05">
+                    <input type="range" id="multiplier" tabindex="3" min="1" value="1" max="2" step="0.05">
                     <output for="multiplier">0</output>
                 </div>
             </section>
@@ -93,7 +93,7 @@
                     <span class="material-symbols-outlined" data-collapse="option-2">menu</span>
                     <span class="title">
                         <span>Treated Zone</span>
-                        <span id="">$0</span>
+                        <span id="treated_zone_price">$0</span>
                     </span>
                     <span class="material-symbols-outlined" data-copy="option-2-system">counter_1</span>
                     <span class="material-symbols-outlined" data-copy="option-2-details">counter_2</span>
@@ -105,14 +105,14 @@
                     <div id="option-2-system">
                         <p>A liquid-termicide treated zone is designed to deter termites from gaining concealed access to a building or structure. The most effective method of creating an even and continuous treated zone is by trenching and treating the soil as it is backfilled. Soil injection equipment (rodding) will only be used where trenching and treating the back-fill is not possible or practical.</p>
 
-                        <p>Trenching</p>
+                        <p><strong>Trenching</strong></p>
                         <p>Excavating a trench, treating the exposed trench, back filling and treating the back-fill is the preferred method of installing a treated zone. The trench will be no-less-than 150 mm wide, 80 mm deep and extend not-less-than 50mm below the top edge of the slab or footing.</p>
                         <p>If removal of concrete from the treatment area (using the above measurements) is a possibility, it is highly recommended and encouraged. Additional soil may be required if any concrete is removed.</p>
 
-                        <p>Rodding Through Concrete</p>
+                        <p><strong>Rodding Through Concrete</strong></p>
                         <p>When applying a treated zone underneath a concrete obstruction (e.g. a path), a soil rod with a 3 to 4 way multi-directional tip will be used. The rod will be rotated during application. The tip will be inserted down as close to the footing as possible to ensure a complete treated zone. Rod spacing should not exceed 350mm and application volume will be adjusted depending on soil type.</p>
 
-                        <p>Other Information</p>
+                        <p><strong>Other Information</strong></p>
                         <p>Any items stored against the wall will need to be moved away from the wall prior to the treatment taking place. This can include air conditioner units or hot water services. Moving these items is not the responsibility of the Flick Technician.</p>
                         <p>Likewise, it is recommended that any pavers be removed from the treatment area and re-placed by a suitably qualified person. If pavers need to be removed to allow for trenching of the soil, it is not the responsibility of the Flick Technician to re-place the pavers to their original condition.</p>
                     </div>
@@ -125,7 +125,10 @@
                             &bullet; Trenching <ins id="trenching-meters">0</ins> meters<br>
                             &bullet; Rodding <ins id="rodding-meters">0</ins> meters<br>
                         </p>
-                        <p>The expected installation time for one technician is <ins id="duration">0</ins> hours.</p>
+                        <p>The expected installation time for one technician is <ins id="treated_zone_duration">0</ins> hours.</p>
+
+                        <p>* Access to water is REQUIRED for the treatment.</p>
+                        <p>* Pipe locator services may be required if there is concern of pipes being in the install area. This is at an additional cost of approximately $440.</p>
                     </div>
                 </article>
             </section>
