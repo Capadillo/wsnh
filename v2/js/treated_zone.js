@@ -10,7 +10,7 @@ function onUpdate(meters = {}, multiplier = 1) {
     meters.soil || (meters.soil = 0);
     meters.concrete || (meters.concrete = 0);
 
-    let duration = Math.round(((meters.soil * 7.5) + (meters.concrete * 15)) / 60);
+    let duration = ((meters.soil * 7.5) + (meters.concrete * 15)) / 60;
 
     // --------------------------------------------------
     // Hard Values
@@ -58,6 +58,6 @@ export function update() {
 
     $('#trenching-meters').text(soil);
     $('#rodding-meters').text(concrete);
-    $('#treated_zone_price').text(`$${install.toFixed(2)}`);
+    $('#treated_zone_price').text(`$${install.toFixed(0)}`);
     $('#treated_zone_duration').text(`${duration}`);
 }

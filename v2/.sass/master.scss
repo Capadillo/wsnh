@@ -134,9 +134,15 @@ main {
 
 footer {
     font-size: 0.75rem;
+    font-weight: 700;
     padding-block-start: 0.5rem;
     padding-block-end: 1rem;
     text-align: center;
+
+    a {
+        color: $color-dark;
+        text-decoration: none;
+    }
 }
 
 #exterra {
