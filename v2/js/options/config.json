@@ -1,0 +1,45 @@
+{
+    "labour":   242.00,
+
+    "install": {
+        "inconcrete": {
+            "distance":    2.75,
+            "duration":   32.50,
+            "price":      16.80
+        },
+        "inground": {
+            "distance":    2.75,
+            "duration":   22.50,
+            "price":       8.49
+        },
+        "trenching": {
+            "duration":    7.50,
+            "multiplier":  2.67
+        },
+        "rodding": {
+            "duration":   15.00,
+            "multiplier":  2.67
+        }
+    },
+
+    "renewal": {
+        "inconcrete": {
+            "duration":    2.00,
+            "price":       1.80
+        },
+        "inground": {
+            "duration":    2.00,
+            "price":       2.60
+        }
+    },
+
+    "monitor": {
+        "inconcrete": {
+            "duration":    1.50
+        },
+        "inground": {
+            "duration":    1.50
+        },
+        "visits": 5
+    }
+}
