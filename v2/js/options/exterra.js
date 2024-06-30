@@ -1,72 +1,91 @@
 import cfg from "./config.json" with { type: "json" }
 
-function calculate()
+function onUpdate()
 {
-    // --------------------------------------------------
-    // Number of Stations
-    // --------------------------------------------------
+    // Station
+    const s1 = Math.ceil($('#input-soft').val() / cfg.exterra.distance);
+    const s2 = Math.ceil($('#input-hard').val() / cfg.exterra.distance);
 
-    const num_in_ground   = Math.ceil($(`#soil-input`).val()     / cfg.install.inground.distance);
-    const num_in_concrete = Math.ceil($(`#concrete-input`).val() / cfg.install.inconcrete.distance);
+    // Duration
+    const d1i = cfg.exterra.ig.install.duration;
+    const d2i = cfg.exterra.ic.install.duration;
+    const d1r = cfg.exterra.ig.renewal.duration;
+    const d2r = cfg.exterra.ic.renewal.duration;
+    const d1m = cfg.exterra.ig.monitor.duration;
+    const d2m = cfg.exterra.ic.monitor.duration;
+
+    // Labour
+    const lb = cfg.labour;
+    const mv = cfg.exterra.visits;
+
+    // Materials
+    const m1i = cfg.exterra.ig.install.cost;
+    const m2i = cfg.exterra.ic.install.cost;
+    const m1r = cfg.exterra.ig.renewal.cost;
+    const m2r = cfg.exterra.ic.renewal.cost;
+    const m1m = cfg.exterra.ig.monitor.cost;
+    const m2m = cfg.exterra.ic.monitor.cost;
+
+    // Multiplier
+    const mult = $('#multiplier').val()
 
     // --------------------------------------------------
     // Install
     // --------------------------------------------------
 
-    const duration_y1  = (num_in_ground  * cfg.install.inground.duration
-                       +  num_in_concrete * cfg.install.inconcrete.duration)
-                       / 60;
-    const materials_y1 = num_in_ground   * cfg.install.inground.price
-                       + num_in_concrete * cfg.install.inconcrete.price;
-    const labour_y1    = duration_y1     * cfg.labour;
+    let install = {};
+    install.duration  = ((s1 * d1i) + (s2 * d2i)) / 60;
+    install.labour    = install.duration * lb;
+    install.materials = ((s1 * m1i) + (s2 * m2i));
+
+    console.log('Install', install);
 
     // --------------------------------------------------
     // Renewal
     // --------------------------------------------------
 
-    const duration_y2  = (num_in_ground  * cfg.renewal.inground.duration
-                       +  num_in_concrete * cfg.renewal.inconcrete.duration)
-                       / 60;
-    const materials_y2 = num_in_ground   * cfg.renewal.inground.price
-                       + num_in_concrete * cfg.renewal.inconcrete.price;
-    const labour_y2    = duration_y2     * cfg.labour;
+    let renewal = {};
+    renewal.duration  = ((s1 * d1r) + (s2 * d2r)) / 60;
+    renewal.labour    = renewal.duration * lb;
+    renewal.materials = ((s1 * m1r) + (s2 * m2r));
+
+    console.log('Renewal', renewal);
 
     // --------------------------------------------------
-    // Monitoring
+    // Monitor
     // --------------------------------------------------
 
-    const duration_yr  = (num_in_ground  * cfg.monitor.inground.duration
-                       +  num_in_concrete * cfg.monitor.inconcrete.duration)
-                       / 60;
-    const labour_yr    = duration_yr * cfg.labour * cfg.monitor.visits;
+    let monitor = {};
+    monitor.duration  = ((s1 * d1m) + (s2 * d2m)) / 60;
+    monitor.labour    = (monitor.duration * lb) * mv;
+    monitor.materials = ((s1 * m1m) + (s2 * m2m)) * mv;
+
+    console.log('Monitor', monitor);
 
     // --------------------------------------------------
-    // Return
+    // Totals
     // --------------------------------------------------
-
-    const multiplier = Number($(`#multiplier`).val());
 
     return {
         install: {
-            price: (materials_y1 + labour_y1 + labour_yr) * multiplier,
-            duration: duration_y1
+            price: (install.labour + install.materials + monitor.labour + monitor.materials) * mult,
+            duration: { initial: install.duration, monitor: monitor.duration }
         },
         renewal: {
-            price: (materials_y2 + labour_y2 + labour_yr) * multiplier,
-            duration: duration_y2
+            price: (renewal.labour + renewal.materials + monitor.labour + monitor.materials) * mult,
+            duration: { initial: renewal.duration, monitor: monitor.duration }
         },
-        stations: {
-            in_ground: num_in_ground,
-            in_concrete: num_in_concrete
-        }
+        stations: { inground: s1, inconcrete: s2 }
     }
 }
 
 export default function()
 {
-    const { install, renewal, stations } = calculate();
+    console.clear();
 
-    if (stations.in_ground + stations.in_concrete == 0) {
+    const { install, renewal, stations } = onUpdate();
+
+    if (stations.inground + stations.inconcrete == 0) {
         $('#install_overview').text(`$0`);
         $('#install').text(`$0`);
         $('#renewal').text(`$0`);
@@ -79,7 +98,22 @@ export default function()
     $('#install_overview').text(`$${install.price.toFixed(0)}`);
     $('#install').text(`$${install.price.toFixed(0)}`);
     $('#renewal').text(`$${renewal.price.toFixed(0)}`);
-    $('#stations-soil').text(stations.in_ground);
-    $('#stations-concrete').text(stations.in_concrete);
-    $('#duration').text(install.duration.toFixed(2));
+    $('#stations-soil').text(stations.inground);
+    $('#stations-concrete').text(stations.inconcrete);
+    
+    if (install.duration.initial < 1) {
+        $('#duration').text(`${Math.round(install.duration.initial * 60)} minutes`);
+    } else if (install.duration.initial == 1) {
+        $('#duration').text(`${(install.duration.initial).toFixed(1)} hour`);
+    } else {
+        $('#duration').text(`${(install.duration.initial).toFixed(1)} hours`);
+    }
+
+    if (install.duration.monitor < 1) {
+        $('#mon_duration').text(`${Math.round(install.duration.monitor * 60)} minutes`);
+    } else if (install.duration.monitor == 1) {
+        $('#mon_duration').text(`${(install.duration.monitor).toFixed(1)} hour`);
+    } else {
+        $('#mon_duration').text(`${(install.duration.monitor).toFixed(1)} hours`);
+    }
 }

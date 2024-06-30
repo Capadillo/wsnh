@@ -6,17 +6,17 @@ function calculate()
     // Number of Meters
     // --------------------------------------------------
 
-    const num_trenching = $(`#soil-input`).val();
-    const num_rodding   = $(`#concrete-input`).val();
+    const num_trenching = $(`#input-soft`).val();
+    const num_rodding   = $(`#input-hard`).val();
 
     // --------------------------------------------------
     // Install
     // --------------------------------------------------
 
-    const duration = (num_trenching * cfg.install.trenching.duration
-                   + num_rodding * cfg.install.rodding.duration) / 60;
+    const duration = (num_trenching * cfg.treated_zone.trenching.duration
+                   + num_rodding * cfg.treated_zone.rodding.duration) / 60;
 
-    const labour   = cfg.labour * cfg.install.trenching.multiplier;
+    const labour   = cfg.labour * cfg.treated_zone.trenching.multiplier;
 
     // --------------------------------------------------
     // Results
