@@ -67,6 +67,12 @@ export default function()
     const { install, renewal, stations } = calculate();
 
     if (stations.in_ground + stations.in_concrete == 0) {
+        $('#install_overview').text(`$0`);
+        $('#install').text(`$0`);
+        $('#renewal').text(`$0`);
+        $('#stations-soil').text(`0`);
+        $('#stations-concrete').text(`0`);
+        $('#duration').text(`0`);
         return;
     }
 

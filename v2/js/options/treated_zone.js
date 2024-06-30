@@ -35,6 +35,10 @@ export default function() {
     const { price, duration, meters } = calculate();
     
     if (meters.trenching + meters.rodding == 0) {
+        $('#trenching-meters').text(`0`);
+        $('#rodding-meters').text(`0`);
+        $('#treated_zone_price').text(`$0`);
+        $('#treated_zone_duration').text(`0`);
         return;
     }
 
