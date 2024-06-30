@@ -11,16 +11,19 @@
     position: relative;
 
     label {
-        color: $color-secondary;
-        font-size: 0.75rem;
+        background: transparent;
+        color: rgba($color-secondary, 0.5);
+        font-size: 0.6rem;
         font-weight: 600;
-        left: 50%;
         pointer-events: none;
-        position: absolute;
+        text-align: center;
         text-transform: uppercase;
+        user-select: none;
+
+        left: 50%;
+        position: absolute;
         top: 50%;
         transform: translate(-50%, -50%);
-        user-select: none;
     }
 
     @mixin track {
