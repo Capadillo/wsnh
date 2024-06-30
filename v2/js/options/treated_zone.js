@@ -1,9 +1,5 @@
 import cfg from "./config.json" with { type: "json" }
 
-// ------------------------------------------------------------
-// User Input
-// ------------------------------------------------------------
-
 function calculate()
 {
     // --------------------------------------------------
@@ -28,14 +24,6 @@ function calculate()
 
     const multiplier = Number($(`#multiplier`).val());
 
-    if (num_trenching + num_rodding == 0) {
-        return {
-            price: 0,
-            duration: 0,
-            meters: { trenching: num_trenching, rodding: num_rodding }
-        }
-    }
-
     return {
         price: labour * duration * multiplier,
         duration: duration,
@@ -45,6 +33,10 @@ function calculate()
 
 export default function() {
     const { price, duration, meters } = calculate();
+    
+    if (meters.trenching + meters.rodding == 0) {
+        return;
+    }
 
     $('#trenching-meters').text(meters.trenching);
     $('#rodding-meters').text(meters.rodding);

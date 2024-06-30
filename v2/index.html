@@ -11,16 +11,16 @@
     <body>
         <div class="flash">Default Message</div>
 
-        <header class="page-header">
+        <header id="body__header">
             <section>
-                <img src="../images/JC Logo.svg">
-                <h1>Proposal Generator</h1>
-                <span class="material-symbols-outlined">more_vert</span>
+                <svg viewBox="0 0 2500 2500" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" class="logo" style="aspect-ratio: 1; height: 100%; fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"><path d="M1741.38 797.442c124.972 0 238.111 50.653 320.004 132.554l320.011-320.004c-163.792-163.801-390.071-265.108-640.015-265.108-120.037 0-234.591 23.422-339.418 65.865v540.067c82.922-94 204.209-153.374 339.418-153.374M383.708 1702.55h-265.1v452.565h265.1c229.571 0 439.138-85.514 598.703-226.373-106.264-118.733-185.085-262.53-226.467-421.459-81.688 117.955-217.895 195.267-372.236 195.267" style="fill:#fff;fill-rule:nonzero"/><path d="M1741.38 1702.55c-249.943 0-452.557-202.613-452.557-452.557V401.448H684.305L231.748 854.005h604.518v395.988c0 229.523 85.483 439.051 226.278 598.601 165.852 187.937 408.48 306.521 678.836 306.521 249.944 0 476.223-101.314 640.015-265.107l-320.011-320.004c-81.893 81.901-195.032 132.546-320.004 132.546" style="fill:#fff;fill-rule:nonzero"/></svg>
+                <span>Proposal Generator</span>
+                <i class="material-symbols-outlined">more_vert</i>
             </section>
         </header>
 
-        <main>
-            <section class="input-group">
+        <main id="body__main">
+            <section class="main__ui">
                 <div class="spinner" id="soil">
                     <button>&plus;</button>
                     <input type="number" id="soil-input" tabindex="1" min="0" placeholder="0">
@@ -42,15 +42,15 @@
                 </div>
             </section>
 
-            <section class="system-window">
+            <section class="main__option">
                 <header>
-                    <span class="material-symbols-outlined" data-collapse="option-1">menu</span>
+                    <i class="material-symbols-outlined" data-collapse="option-1">menu</i>
                     <span class="title">
                         <span>Exterra</span>
-                        <span id="install_overview">$0.00</span>
+                        <span id="install_overview">$0</span>
                     </span>
-                    <span class="material-symbols-outlined" data-copy="option-1-system">counter_1</span>
-                    <span class="material-symbols-outlined" data-copy="option-1-details">counter_2</span>
+                    <i class="material-symbols-outlined" data-copy="option-1-system">counter_1</i>
+                    <i class="material-symbols-outlined" data-copy="option-1-details">counter_2</i>
                 </header>
 
                 <article id="option-1" class="collapsed">
@@ -88,15 +88,15 @@
                 </article>
             </section>
 
-            <section class="system-window">
+            <section class="main__option">
                 <header>
-                    <span class="material-symbols-outlined" data-collapse="option-2">menu</span>
+                    <i class="material-symbols-outlined" data-collapse="option-2">menu</i>
                     <span class="title">
                         <span>Treated Zone</span>
                         <span id="treated_zone_price">$0</span>
                     </span>
-                    <span class="material-symbols-outlined" data-copy="option-2-system">counter_1</span>
-                    <span class="material-symbols-outlined" data-copy="option-2-details">counter_2</span>
+                    <i class="material-symbols-outlined" data-copy="option-2-system">counter_1</i>
+                    <i class="material-symbols-outlined" data-copy="option-2-details">counter_2</i>
                 </header>
 
                 <article id="option-2" class="collapsed">
@@ -134,7 +134,7 @@
             </section>
         </main>
 
-        <footer>
+        <footer id="body__footer">
             <div><a href="mailto:joshua.capes@live.com?subject=Proposal Generator">Joshua Capes</a></div>
             <div>&copy; 2024</div>
         </footer>

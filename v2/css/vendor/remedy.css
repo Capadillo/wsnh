@@ -18,7 +18,9 @@ note: |
 
 category: global
 */
-*, ::before, ::after { box-sizing: border-box; }
+*, ::before, ::after {
+  box-sizing: border-box;
+}
 
 
 /* @docs
@@ -231,3 +233,15 @@ category: legacy browsers
   box-sizing: border-box;
   padding: 0;
 }
+
+/* @docs
+label: Additional Style Changes
+
+note: |
+  1. Adjust the height of the HTML and BODY elements.
+  2. Remove the underline from the INS element.
+
+category: custom
+*/
+html, body { min-height: 100%; }
+ins { text-decoration: unset !important; }

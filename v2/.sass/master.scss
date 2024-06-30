@@ -1,246 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
 
-$color-dark: rgba(50, 50, 50, 1);
+$box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+$panel-bg: rgb(80,80,80);
+$panel-light-bg: rgba(white, 0.75);
+$color-secondary: white;
+$px-gap: 1px;
 
-body {
-    background-color: rgba(0, 0, 0, 0.3);
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    position: relative;
+%panel {
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-header {
-    &.page-header {
-        background-color: $color-dark;
-        color: white;
-        overflow: hidden;
-        width: 100%;
+button, [data-collapse], [data-copy] {
+    color: $color-secondary;
+    cursor: pointer;
+    user-select: none;
 
-        section {
-            align-items: center;
-            display: grid;
-            grid-template-columns: max-content auto max-content;
-            margin-inline: auto;
-            max-width: min(36rem, 100% - 1rem);
-
-            & > img {
-                aspect-ratio: 1;
-                height: 80%;
-            }
-
-            & > span {
-                background-color: transparent;
-                border: 0;
-                color: white;
-                cursor: pointer;
-                padding: 1rem 0.25rem;
-            }
-        }
-
-        img {
-            max-height: 100px;
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin: 0;
-            padding: 1rem;
-        }
+    &:hover, &:active {
+        color: darken($color-secondary, 50%);
     }
 }
 
-.flash {
-    background-color: $color-dark;
-    border-radius: 0.5rem;
-    color: white;
-    display: none;
-    left: 0.5rem;
-    padding: 1rem;
-    position: fixed;
-    bottom: 0.5rem;
-    width: calc(100% - 1rem);
-}
+// --------------------------------------------------
+// SECTIONS
+// --------------------------------------------------
 
-main {
-    margin-block: 0.5rem;
-    margin-inline: auto;
-    max-width: min(36rem, 100% - 1rem);
+@import "sections/body";
 
-    h2 {
-        align-items: end;
-        color: $color-dark;
-        display: grid;
-        font-size: 1.75rem;
-        font-weight: 700;
-        grid-template-columns: auto max-content;
-        line-height: 1;
-        margin: 0;
+@import "sections/body__header";
+@import "sections/body__main";
+@import "sections/body__footer";
 
-        span:nth-of-type(1) {
-            font-family: 'Unica One', sans-serif;
-        }
+@import "sections/main__option";
+@import "sections/main__ui";
 
-        span:nth-of-type(2) {
-            font-size: 1.125rem;
-            font-weight: 500;
-            line-height: 1.2;
-        }
+// --------------------------------------------------
+// WIDGETS
+// --------------------------------------------------
 
-        &::after {
-            background-color: $color-dark;
-            border-radius: 1rem;
-            content: " ";
-            display: block;
-            grid-column: 1 / -1;
-            height: 3px;
-        }
-    }
-
-    section {
-        & > h3 {
-            align-items: center;
-            background-color: $color-dark;
-            border-radius: 0.25rem;
-            color: white;
-            display: grid;
-            grid-template-columns: auto max-content max-content;
-            font-size: 1.125rem;
-            font-weight: 500;
-            margin: 0;
-            margin-top: 0.5rem;
-            overflow: hidden;
-            padding: 0 0.25rem;
-            user-select: none;
-
-            & > span, & > button {
-                background-color: transparent;
-                border: 0;
-                color: white;
-                cursor: pointer;
-                font: inherit;
-                padding: 0.5rem;
-            }
-
-            & + article {
-                font-size: 0.75rem;
-                padding-inline: 0.5rem;
-            }
-        }
-    }
-}
-
-footer {
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding-block-start: 0.5rem;
-    padding-block-end: 1rem;
-    text-align: center;
-
-    a {
-        color: $color-dark;
-        text-decoration: none;
-    }
-}
-
-#exterra {
-    background-color: white;
-    border-radius: 0.5rem;
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-}
-
-h1, h2, h3 {
-    font-family: 'Unica One', sans-serif;
-}
-
-h3 {
-    font-size: 1.75rem;
-    text-align: center;
-
-    &::after {
-        background-color: black;
-        border-radius: 100%;
-        content: " ";
-        display: block;
-        height: 3px;
-    }
-}
-
-h1, h2, h3, h4, h5, h6, p {
-    margin-block: 0.75em;
-}
-
-ins {
-    text-decoration: none;
-}
-
-.input-group {
-    display: grid;
-    grid-gap: 0.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-
-    & > .slider:has(#multiplier) {
-        grid-column: 1 / -1;
-    }
-}
-
-article.collapsed {
-    display: none;
-}
-
-.system-window {
-    border-radius: 0.5rem;
-    margin-top: 0.5rem;
-    overflow: hidden;
-
-    header {
-        align-items: stretch;
-        background-color: lighten($color-dark, 15%);
-        color: lighten($color-dark, 15%);
-        display: grid;
-        grid-gap: 1px;
-        grid-template-columns: max-content auto repeat(3, max-content);
-
-        & > span {
-            background-color: $color-dark;
-            padding: 1rem;
-            transition: color ease-in-out 0.1s;
-
-            &:not(.title) {
-                &:hover, &:active {
-                    color: lighten($color-dark, 25%);
-                }
-            }
-            
-            &.title {
-                color: white;
-                display: flex;
-                font-family: 'Unica One', sans-serif;
-                font-size: 1.25rem;
-                
-                & :first-child {
-                    flex-grow: 1;
-                }
-            }
-
-            &[data-collapse], &[data-copy] {
-                cursor: pointer;
-                user-select: none;
-            }
-        }
-    }
-
-    article {
-        background-color: white;
-        padding: 1rem;
-
-        & :first-child { margin-block-start: unset; }
-        & :last-child { margin-block-end: unset; }
-    }
-}
-
-@import './widgets/slider';
-@import './widgets/spinner';
+@import "widgets/flash";
+@import "widgets/slider";
+@import "widgets/spinner";

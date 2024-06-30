@@ -1,0 +1,11 @@
+.flash {
+    background-color: $panel-bg;
+    border-radius: 0.5rem;
+    color: white;
+    display: none;
+    left: 0.5rem;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0.5rem;
+    width: calc(100% - 1rem);
+}

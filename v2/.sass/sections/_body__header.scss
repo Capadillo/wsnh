@@ -1,0 +1,33 @@
+#body__header
+{
+    // background-color: $panel-bg;
+    @extend %panel;
+
+    section
+    {
+        align-items: center;
+        display: grid;
+        grid-gap: 0.5rem;
+        grid-template-columns: max-content auto max-content;
+        margin-inline: auto;
+        max-width: min(36rem, 100%);
+        padding: 0.5rem;
+
+        .logo {
+            path {
+                fill: $color-secondary !important;
+            }
+        }
+
+        span {
+            font-family: "Unica One", sans-serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        i {
+            aspect-ratio: 1;
+            padding: 0.5rem;
+        }
+    }
+}

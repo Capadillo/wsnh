@@ -46,14 +46,6 @@ function calculate()
 
     const multiplier = Number($(`#multiplier`).val());
 
-    if (num_in_ground + num_in_concrete == 0) {
-        return {
-            install: { price: 0, duration: 0 },
-            renewal: { price: 0, duration: 0 },
-            stations: { in_ground: num_in_ground, in_concrete: num_in_concrete }
-        }
-    }
-
     return {
         install: {
             price: (materials_y1 + labour_y1 + labour_yr) * multiplier,
@@ -73,6 +65,10 @@ function calculate()
 export default function()
 {
     const { install, renewal, stations } = calculate();
+
+    if (stations.in_ground + stations.in_concrete == 0) {
+        return;
+    }
 
     $('#install_overview').text(`$${install.price.toFixed(0)}`);
     $('#install').text(`$${install.price.toFixed(0)}`);
