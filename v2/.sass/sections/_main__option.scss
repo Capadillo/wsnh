@@ -6,6 +6,8 @@
 
     & > header
     {
+        @extend %panel;
+
         align-items: stretch;
         display: grid;
         grid-template-columns: max-content auto max-content max-content;
@@ -13,18 +15,11 @@
         max-width: min(36rem, 100%);
 
         & > * {
-            // background-color: $panel-bg;
-            @extend %panel;
             padding: 1rem;
 
             &:not(:last-child) {
                 border-right: 1px solid rgba(white, 0.1);
             }
-        }
-
-        svg {
-            aspect-ratio: 1;
-            height: 100%;
         }
 
         span {
@@ -35,10 +30,6 @@
             & :first-child {
                 flex-grow: 1;
             }
-        }
-
-        i {
-            aspect-ratio: 1;
         }
     }
 

@@ -4,7 +4,8 @@ function updateOutput(range, output) {
     const max = range.max ? range.max : 100;
     const newVal = Number(((val - min) * 100) / (max - min));
     output.innerHTML = newVal.toFixed(0) + "%";
-    output.style.left = `calc(${newVal}% + (${24 - newVal * 0.425}px))`;
+    output.style.left = (newVal + '%');
+    output.style.transform = 'translate(' + (-1 * newVal) + '%, -3rem)';
 }
 
 $('.slider input[type=range]').each(function () {

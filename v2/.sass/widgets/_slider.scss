@@ -1,30 +1,7 @@
 .slider {
     $height: 56px;
     $gutter: 4px;
-    @extend %panel;
-    border-radius: 0.5rem;
-    box-shadow: $box-shadow;
     position: relative;
-    overflow: hidden;
-
-    -webkit-tap-highlight-color: transparent;
-    position: relative;
-
-    label {
-        background: transparent;
-        color: rgba($color-secondary, 0.5);
-        font-size: 0.6rem;
-        font-weight: 600;
-        pointer-events: none;
-        text-align: center;
-        text-transform: uppercase;
-        user-select: none;
-
-        left: 50%;
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
 
     @mixin track {
         background: transparent;
@@ -61,6 +38,10 @@
         display: block;
         margin: 0;
         width: 100%;
+        @extend %panel;
+        border-radius: 0.5rem;
+        box-shadow: $box-shadow;
+        overflow: hidden;
 
         &::-webkit-slider-runnable-track { @include track; }
         &::-ms-track { @include track; }
@@ -71,6 +52,22 @@
         &::-moz-range-thumb { @include thumb; }
     }
 
+    label {
+        background: transparent;
+        color: rgba($color-secondary, 0.5);
+        font-size: 0.6rem;
+        font-weight: 600;
+        pointer-events: none;
+        text-align: center;
+        text-transform: uppercase;
+        user-select: none;
+
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
     output {
         color: white;
         padding: 4px 12px;
@@ -79,6 +76,7 @@
         text-align: center;
         transform: translate(-50%, -130%);
         top: 0;
+        user-select: none;
 
         position: absolute;
         background: rgba(0, 0, 0, 0.5);

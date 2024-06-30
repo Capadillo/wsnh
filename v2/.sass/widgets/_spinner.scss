@@ -1,5 +1,6 @@
 .spinner {
     @extend %panel;
+    
     border-radius: 0.5rem;
     box-shadow: $box-shadow;
     display: grid;
@@ -8,16 +9,6 @@
     overflow: hidden;
 
     & > button {
-        -webkit-tap-highlight-color: transparent;
-        aspect-ratio: 1;
-        background: transparent;
-        border: 0;
-        cursor: pointer;
-        font: inherit;
-        font-size: 1.5rem;
-        transition: color ease-in-out 0.1s;
-        user-select: none;
-        
         &:first-of-type {
             grid-area: p;
         }
