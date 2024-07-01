@@ -15,9 +15,160 @@
             <section>
                 <svg viewBox="0 0 2500 2500" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" class="logo" style="aspect-ratio: 1; height: 100%; fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"><path d="M1741.38 797.442c124.972 0 238.111 50.653 320.004 132.554l320.011-320.004c-163.792-163.801-390.071-265.108-640.015-265.108-120.037 0-234.591 23.422-339.418 65.865v540.067c82.922-94 204.209-153.374 339.418-153.374M383.708 1702.55h-265.1v452.565h265.1c229.571 0 439.138-85.514 598.703-226.373-106.264-118.733-185.085-262.53-226.467-421.459-81.688 117.955-217.895 195.267-372.236 195.267" style="fill:#fff;fill-rule:nonzero"/><path d="M1741.38 1702.55c-249.943 0-452.557-202.613-452.557-452.557V401.448H684.305L231.748 854.005h604.518v395.988c0 229.523 85.483 439.051 226.278 598.601 165.852 187.937 408.48 306.521 678.836 306.521 249.944 0 476.223-101.314 640.015-265.107l-320.011-320.004c-81.893 81.901-195.032 132.546-320.004 132.546" style="fill:#fff;fill-rule:nonzero"/></svg>
                 <span>Proposal Generator</span>
-                <i class="material-symbols-outlined">more_vert</i>
+                <i class="material-symbols-outlined" data-dialog="settings">more_vert</i>
             </section>
         </header>
+
+        <dialog id="settings">
+            <div class="dialog-wrapper">
+                <header id="dialog__header">
+                    <section>
+                        <svg viewBox="0 0 2500 2500" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" class="logo" style="aspect-ratio: 1; height: 100%; fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2"><path d="M1741.38 797.442c124.972 0 238.111 50.653 320.004 132.554l320.011-320.004c-163.792-163.801-390.071-265.108-640.015-265.108-120.037 0-234.591 23.422-339.418 65.865v540.067c82.922-94 204.209-153.374 339.418-153.374M383.708 1702.55h-265.1v452.565h265.1c229.571 0 439.138-85.514 598.703-226.373-106.264-118.733-185.085-262.53-226.467-421.459-81.688 117.955-217.895 195.267-372.236 195.267" style="fill:#fff;fill-rule:nonzero"/><path d="M1741.38 1702.55c-249.943 0-452.557-202.613-452.557-452.557V401.448H684.305L231.748 854.005h604.518v395.988c0 229.523 85.483 439.051 226.278 598.601 165.852 187.937 408.48 306.521 678.836 306.521 249.944 0 476.223-101.314 640.015-265.107l-320.011-320.004c-81.893 81.901-195.032 132.546-320.004 132.546" style="fill:#fff;fill-rule:nonzero"/></svg>
+                        <span>Settings</span>
+                        <i class="material-symbols-outlined" data-close="settings">close</i>
+                    </section>
+                </header>
+
+                <div class="dialog-layout">
+                    <section>
+                        <h2>General</h2>
+
+                        <div class="input-group">
+                            <label>Labour (per Hour)</label>
+                            <input type="text">
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Exterra</h2>
+
+                        <div class="input-group">
+                            <label>Distance (Meters)</label>
+                            <input type="text">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Visits (days)</label>
+                            <input type="text">
+                        </div>
+
+                        <section>
+                            <h3>In Ground</h3>
+
+                            <section>
+                                <h4>Install</h4>
+
+                                <div class="input-group">
+                                    <label>Material Cost ($)</label>
+                                    <input type="text">
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Time To Install (minutes)</label>
+                                    <input type="text">
+                                </div>
+                            </section>
+
+                            <section>
+                                <h4>Renewal</h4>
+
+                                <div class="input-group">
+                                    <label>Material Cost ($)</label>
+                                    <input type="text">
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Time To Install (minutes)</label>
+                                    <input type="text">
+                                </div>
+                            </section>
+
+                            <section>
+                                <h4>Monitor</h4>
+
+                                <div class="input-group">
+                                    <label>Material Cost ($)</label>
+                                    <input type="text">
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Time To Install (minutes)</label>
+                                    <input type="text">
+                                </div>
+                            </section>
+                        </section>
+
+                        <section>
+                            <h3>In Concrete</h3>
+
+                            <section>
+                                <h4>Install</h4>
+
+                                <div class="input-group">
+                                    <label>Material Cost ($)</label>
+                                    <input type="text">
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Time To Install (minutes)</label>
+                                    <input type="text">
+                                </div>
+                            </section>
+
+                            <section>
+                                <h4>Renewal</h4>
+
+                                <div class="input-group">
+                                    <label>Material Cost ($)</label>
+                                    <input type="text">
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Time To Install (minutes)</label>
+                                    <input type="text">
+                                </div>
+                            </section>
+
+                            <section>
+                                <h4>Monitor</h4>
+
+                                <div class="input-group">
+                                    <label>Material Cost ($)</label>
+                                    <input type="text">
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Time To Install (minutes)</label>
+                                    <input type="text">
+                                </div>
+                            </section>
+                        </section>
+                    </section>
+
+                    <section>
+                        <h2>Treated Zone</h2>
+
+                        <section>
+                            <h3>Trenching</h3>
+
+                            <div class="input-group">
+                                <label>Time To Install (minutes)</label>
+                                <input type="text">
+                            </div>
+                        </section>
+
+                        <section>
+                            <h3>Rodding</h3>
+
+                            <div class="input-group">
+                                <label>Time To Install (minutes)</label>
+                                <input type="text">
+                            </div>
+                        </section>
+                    </section>
+                </div>
+            </div>
+        </dialog>
 
         <main id="body__main">
             <section class="main__ui">

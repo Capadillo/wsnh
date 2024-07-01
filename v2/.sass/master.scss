@@ -37,11 +37,96 @@ button
     user-select: none;
 }
 
+dialog {
+    &::backdrop {
+        backdrop-filter: blur(10px);
+    }
+
+    border: unset;
+    height: 100%;
+    width: 100%;
+    max-height: min(64rem, 100%);
+    max-width: min(36rem, 100%);
+    overflow: hidden;
+    padding: 0;
+    z-index: 5;
+
+    h1, h2, h3, h4 {
+        margin: 0;
+
+        &:first-child { margin-block-start: unset; }
+        &:last-child { margin-block-end: unset; }
+    }
+
+    h1 {
+        font-family: "Unica One", sans-serif;
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.50rem;
+        margin-top: 0.5em;
+
+        &::after {
+            content: " ";
+            background-color: black;
+            background: linear-gradient(to right, black, transparent);
+            border-radius: 0.5rem 100% 100% 0.5rem;
+            height: 3px;
+            display: block;
+        }
+    }
+
+    h3 {
+        font-size: 1.125rem;
+    }
+
+    h4 {
+        font-size: 1.00rem;
+    }
+
+    label {
+        padding: 0.5rem 0;
+    }
+
+    input {
+        padding: 0 0.5rem;
+    }
+
+    .dialog-wrapper {
+        display: grid;
+        grid-template-rows: max-content auto;
+        height: 100%;
+    }
+
+    .dialog-layout {
+        display: grid;
+        grid-gap: 0.5rem;
+        grid-template-columns: max-content auto;
+        height: 100%;
+        overflow: auto;
+        padding: 1rem;
+
+        section, h1, h2, h3, h4 {
+            grid-column: 1 / -1;
+        }
+
+        section, .input-group {
+            display: grid;
+            grid-column: 1 / -1;
+            grid-gap: 0.5rem;
+            grid-template-columns: subgrid;
+        }
+    }
+}
+
 // --------------------------------------------------
 // SECTIONS
 // --------------------------------------------------
 
 @import "sections/body";
+
+@import "sections/dialog__header";
 
 @import "sections/body__header";
 @import "sections/body__main";

@@ -14,6 +14,14 @@ $('input').on('input change', update);
 
 $(update)
 
+$(`[data-dialog=settings]`).on('click', function() {
+    $(`dialog#settings`)[0].showModal();
+});
+
+$(`[data-close=settings]`).on('click', function() {
+    $(`dialog#settings`)[0].close();
+});
+
 // --------------------------------------------------
 // Widgets
 // --------------------------------------------------
